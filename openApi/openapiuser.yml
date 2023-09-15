@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Documentación de la API de Usuarios
+  description: API para gestionar usuarios.
+  version: 1.0.0
+paths:
+  /users:
+    get:
+      summary: Obtener todos los usuarios
+      responses:
+        '200':
+          description: Lista de usuarios exitosamente recuperada.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /users/{id}:
+    get:
+      summary: Obtener un usuario por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del usuario a obtener.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalles del usuario obtenidos exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Usuario no encontrado.
+    put:
+      summary: Actualizar un usuario
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del usuario a actualizar.
+          schema:
+            type: string
+        - in: body
+          name: usuario
+          required: true
+          description: Datos actualizados del usuario.
+          schema:
+            $ref: '#/components/schemas/UpdateUser'
+      responses:
+        '200':
+          description: Usuario actualizado exitosamente.
+        '404':
+          description: Usuario no encontrado.
+    delete:
+      summary: Eliminar un usuario por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del usuario a eliminar.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Usuario eliminado exitosamente.
+        '404':
+          description: Usuario no encontrado.
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único del usuario.
+        createdAt:
+          type: string
+          format: date-time
+          description: Fecha y hora de creación del usuario.
+        username:
+          type: string
+          description: Nombre de usuario.
+        lastname:
+          type: string
+          description: Apellido del usuario.
+        job:
+          type: string
+          description: Puesto de trabajo del usuario.
+        age:
+          type: integer
+          description: Edad del usuario.
+    
+    updateUser:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Nuevo nombre de usuario.
+        lastname:
+          type: string
+          description: Nuevo apellido del usuario.
+        job:
+          type: string
+          description: Nuevo puesto de trabajo del usuario.
+        age:
+          type: integer
+          description: Nueva edad del usuario

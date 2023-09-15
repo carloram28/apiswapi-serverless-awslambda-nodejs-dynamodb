@@ -1,0 +1,107 @@
+service: aws-api-swapi-nodejs
+frameworkVersion: '3'
+
+  
+plugins:
+  - serverless-offline
+
+  
+    
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-west-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-west-2:583637451755:table/userTable
+  
+
+functions:
+  createUser:
+    handler: src/controllers/userController.createUser
+    events:
+      - httpApi:
+          path: /users
+          method: POST
+  getUsers:
+    handler: src/controllers/userController.getUsers
+    events:
+      - httpApi:
+          path: /users
+          method: GET
+  getUser:
+    handler: src/controllers/userController.getUser
+    events:
+      - httpApi:
+          path: /users/{id}
+          method: get
+  updateUser:
+    handler: src/controllers/userController.updateUser
+    events:
+      - httpApi:
+          path: /users/{id}
+          method: put
+  deleteUser:
+    handler: src/controllers/userController.deleteUser
+    events:
+      - httpApi:
+          path: /users/{id}
+          method: delete        
+
+  getPeople:
+    handler: src/controllers/startWarsData.getPeople
+    events:
+      - httpApi:
+          path: /people
+          method: get
+  
+  getFilms:
+    handler: src/controllers/startWarsData.getFilms
+    events:
+      - httpApi:
+          path: /films
+          method: get
+  getPlanets:
+    handler: src/controllers/startWarsData.getPlanets
+    events:
+      - httpApi:
+          path: /planets
+          method: get
+
+  getSpecies:
+    handler: src/controllers/startWarsData.getSpecies
+    events:
+      - httpApi:
+          path: /species
+          method: get  
+
+  getStarships:
+    handler: src/controllers/startWarsData.getStarships
+    events:
+      - httpApi:
+          path: /starships
+          method: get 
+
+  getVehicles:
+    handler: src/controllers/startWarsData.getVehicles
+    events:
+      - httpApi:
+          path: /vehicles
+          method: get                           
+resources:
+  Resources:
+    userTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: userTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH

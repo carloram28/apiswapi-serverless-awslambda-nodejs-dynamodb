@@ -1,0 +1,432 @@
+openapi: 3.0.0
+info:
+  title: Documentación de la API de Star Wars
+  description: API para obtener datos de Star Wars.
+  version: 1.0.0
+paths:
+  /films:
+    get:
+      summary: Obtener películas de Star Wars
+      responses:
+        '200':
+          description: Lista de películas de Star Wars exitosamente recuperada.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Film'
+  /people:
+    get:
+      summary: Obtener personajes de Star Wars
+      responses:
+        '200':
+          description: Lista de personajes de Star Wars exitosamente recuperada.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+  /planets:
+    get:
+      summary: Obtener planetas de Star Wars
+      responses:
+        '200':
+          description: Lista de planetas de Star Wars exitosamente recuperada.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Planet'
+  /species:
+    get:
+      summary: Obtener especies de Star Wars
+      responses:
+        '200':
+          description: Lista de especies de Star Wars exitosamente recuperada.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Species'
+  /starships:
+    get:
+      summary: Obtener naves espaciales de Star Wars
+      responses:
+        '200':
+          description: Lista de naves espaciales de Star Wars exitosamente recuperada.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Starship'
+  /vehicles:
+    get:
+      summary: Obtener vehículos de Star Wars
+      responses:
+        '200':
+          description: Lista de vehículos de Star Wars exitosamente recuperada.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vehicle'
+components:
+  schemas:
+    Film:
+      type: object
+      properties:
+        // Propiedades de una película
+        personajes:
+          type: string
+          description: Lista de personajes de la película.
+        creado:
+          type: string
+          format: date-time
+          description: Fecha de creación de la película.
+        director:
+          type: string
+          description: Nombre del director de la película.
+        modificado:
+          type: string
+          format: date-time
+          description: Fecha de última modificación de la película.
+        episodio_identificador:
+          type: integer
+          description: Número identificador del episodio de la película.
+        rastreo:
+          type: string
+          description: Resumen de apertura de la película.
+        planetas:
+          type: array
+          items:
+            type: string
+          description: Lista de planetas en la película.
+        productor:
+          type: string
+          description: Nombre del productor de la película.
+        fecha_estreno:
+          type: string
+          format: date
+          description: Fecha de estreno de la película.
+        especies:
+          type: array
+          items:
+            type: string
+          description: Lista de especies en la película.
+        naves:
+          type: array
+          items:
+            type: string
+          description: Lista de naves espaciales en la película.
+        titulo:
+          type: string
+          description: Título de la película.
+        url:
+          type: string
+          format: uri
+          description: URL de la película.
+        vehiculos:
+          type: array
+          items:
+            type: string
+          description: Lista de vehículos en la película.
+    Person:
+      type: object
+      properties:
+        // Propiedades de un personaje
+        fecha_nacimiento:
+          type: string
+          description: Fecha de nacimiento del personaje.
+        color_ojo:
+          type: string
+          description: Color de ojos del personaje.
+        peliculas:
+          type: array
+          items:
+            type: string
+          description: Lista de películas en las que aparece el personaje.
+        genero:
+          type: string
+          description: Género del personaje.
+        color_cabello:
+          type: string
+          description: Color de cabello del personaje.
+        altura:
+          type: string
+          description: Altura del personaje.
+        planeta:
+          type: string
+          description: Nombre del planeta natal del personaje.
+        masa:
+          type: string
+          description: Masa del personaje.
+        nombre:
+          type: string
+          description: Nombre del personaje.
+        color_piel:
+          type: string
+          description: Color de piel del personaje.
+        creado:
+          type: string
+          format: date-time
+          description: Fecha de creación del registro del personaje.
+        modificado:
+          type: string
+          format: date-time
+          description: Fecha de última modificación del registro del personaje.
+        especie:
+          type: string
+          description: Especie del personaje.
+        naves:
+          type: array
+          items:
+            type: string
+          description: Lista de naves espaciales utilizadas por el personaje.
+        url:
+          type: string
+          format: uri
+          description: URL del registro del personaje.
+        vehiculos:
+          type: array
+          items:
+            type: string
+          description: Lista de vehículos utilizados por el personaje.
+    Planet:
+      type: object
+      properties:
+        // Propiedades de un planeta
+        clima:
+          type: string
+          description: Clima del planeta.
+        creado:
+          type: string
+          format: date-time
+          description: Fecha de creación del registro del planeta.
+        diámetro:
+          type: string
+          description: Diámetro del planeta.
+        editado:
+          type: string
+          format: date-time
+          description: Fecha de última modificación del registro del planeta.
+        películas:
+          type: array
+          items:
+            type: string
+          description: Lista de películas en las que aparece el planeta.
+        gravedad:
+          type: string
+          description: Gravedad del planeta.
+        nombre:
+          type: string
+          description: Nombre del planeta.
+        periodo_orbital:
+          type: string
+          description: Periodo orbital del planeta.
+        población:
+          type: string
+          description: Población del planeta.
+        residentes:
+          type: array
+          items:
+            type: string
+          description: Lista de residentes del planeta.
+        periodo_rotación:
+          type: string
+          description: Periodo de rotación del planeta.
+        agua_superficial:
+          type: string
+          description: Porcentaje de agua superficial en el planeta.
+        terreno:
+          type: string
+          description: Descripción del terreno del planeta.
+        URL:
+          type: string
+          format: uri
+          description: URL del registro del planeta.
+    Species:
+      type: object
+      properties:
+        // Propiedades de una especie
+        altura_promedio:
+          type: string
+          description: Altura promedio de la especie.
+        vida_promedio:
+          type: string
+          description: Esperanza de vida promedio de la especie.
+        clasificación:
+          type: string
+          description: Clasificación de la especie.
+        creado:
+          type: string
+          format: date-time
+          description: Fecha de creación del registro de la especie.
+        designación:
+          type: string
+          description: Designación de la especie.
+        editado:
+          type: string
+          format: date-time
+          description: Fecha de última modificación del registro de la especie.
+        color_ojos:
+          type: string
+          description: Colores de ojos típicos de la especie.
+        color_cabello:
+          type: string
+          description: Colores de cabello típicos de la especie.
+        mundo_natal:
+          type: string
+          description: Nombre del mundo natal de la especie.
+        idioma:
+          type: string
+          description: Idioma hablado por la especie.
+        nombre:
+          type: string
+          description: Nombre de la especie.
+        gente:
+          type: array
+          items:
+            type: string
+          description: Lista de individuos de esta especie.
+        peliculas:
+          type: array
+          items:
+            type: string
+          description: Lista de películas en las que aparece la especie.
+        color_piel:
+          type: string
+          description: Colores de piel típicos de la especie.
+        url:
+          type: string
+          format: uri
+          description: URL del registro de la especie.
+    Starship:
+      type: object
+      properties:
+        // Propiedades de una nave espacial
+        MGLT:
+          type: string
+          description: MGLT (Megaluz por hora) de la nave espacial.
+        capacidad_carga:
+          type: string
+          description: Capacidad de carga de la nave espacial.
+        consumibles:
+          type: string
+          description: Duración de los consumibles de la nave espacial.
+        coste_en_creditos:
+          type: string
+          description: Coste de la nave espacial en créditos.
+        creado:
+          type: string
+          format: date-time
+          description: Fecha de creación del registro de la nave espacial.
+        multitud:
+          type: string
+          description: Cantidad de tripulación requerida para operar la nave espacial.
+        editado:
+          type: string
+          format: date-time
+          description: Fecha de última modificación del registro de la nave espacial.
+        calificacion_hiperimpulsor:
+          type: string
+          description: Calificación del hiperimpulsor de la nave espacial.
+        longitud:
+          type: string
+          description: Longitud de la nave espacial.
+        fabricante:
+          type: string
+          description: Fabricante de la nave espacial.
+        velocidad_maxima_atmosfera:
+          type: string
+          description: Velocidad máxima en la atmósfera de la nave espacial.
+        modelo:
+          type: string
+          description: Modelo de la nave espacial.
+        nombre:
+          type: string
+          description: Nombre de la nave espacial.
+        pasajeros:
+          type: string
+          description: Capacidad de pasajeros de la nave espacial.
+        peliculas:
+          type: array
+          items:
+            type: string
+          description: Lista de películas en las que aparece la nave espacial.
+        pilotos:
+          type: array
+          items:
+            type: string
+          description: Lista de pilotos de la nave espacial.
+        clase_nave:
+          type: string
+          description: Clase de la nave espacial.
+        url:
+          type: string
+          format: uri
+          description: URL del registro de la nave espacial.
+    Vehicle:
+      type: object
+      properties:
+        // Propiedades de un vehículo
+        capacidad_carga:
+          type: string
+          description: Capacidad de carga del vehículo.
+        consumibles:
+          type: string
+          description: Duración de los consumibles del vehículo.
+        coste_en_creditos:
+          type: string
+          description: Coste del vehículo en créditos.
+        creado:
+          type: string
+          format: date-time
+          description: Fecha de creación del registro del vehículo.
+        multitud:
+          type: string
+          description: Cantidad de tripulación requerida para operar el vehículo.
+        editado:
+          type: string
+          format: date-time
+          description: Fecha de última modificación del registro del vehículo.
+        longitud:
+          type: string
+          description: Longitud del vehículo.
+        fabricante:
+          type: string
+          description: Fabricante del vehículo.
+        velocidad_maxima_atmosfera:
+          type: string
+          description: Velocidad máxima en la atmósfera del vehículo.
+        modelo:
+          type: string
+          description: Modelo del vehículo.
+        nombre:
+          type: string
+          description: Nombre del vehículo.
+        pasajeros:
+          type: string
+          description: Capacidad de pasajeros del vehículo.
+        pilotos:
+          type: array
+          items:
+            type: string
+          description: Lista de pilotos del vehículo.
+        peliculas:
+          type: array
+          items:
+            type: string
+          description: Lista de películas en las que aparece el vehículo.
+        url:
+          type: string
+          format: uri
+          description: URL del registro del vehículo.
+        clase_vehiculo:
+          type: string
+          description: Clase del vehículo.
